@@ -44,9 +44,9 @@ Rust for Forge 是一个为 Minecraft Forge 模组提供高性能 Rust 接口的
 
 只需简单两步即可使用：
 
-1. 将 [rustforforge-1.0.0.jar](file://D:\文档\开发文件夹\GitHub\Minrust\build\libs\rustforforge-1.0.0.jar) 文件放入 Minecraft 的 `mods` 文件夹
+1. 将mod放入 Minecraft 的 `mods` 文件夹
 2. 获取对应平台的 Rust 动态库文件并放置在正确位置：
-   - Windows: `rustforforge_native.dll`
+   - Windows: `rustforforge_native.dll`（windows用户已经自动内置，无需手动安装）
    - Linux: `librustforforge_native.so` 
    - macOS: `librustforforge_native.dylib`
 
@@ -88,7 +88,7 @@ if (rust.isRustLibraryLoaded()) {
 ```
 
 **重要提醒**：
-- 调用前必须使用 [isRustLibraryLoaded()](file://D:\文档\开发文件夹\GitHub\Minrust\src\main\java\org\tab\minrust\RustToolboxImpl.java#L37-L39) 检查库是否已加载
+- 调用前必须使用 [isRustLibraryLoaded()] 检查库是否已加载
 - 所有 Rust 相关异常都会在日志中添加 `[rust]:` 前缀标记
 - 由于是实验性功能，请做好错误处理和降级方案
 
@@ -135,8 +135,8 @@ pub extern "C" fn Java_org_tab_minrust_RustToolboxImpl_yourFunction(
 }
 ```
 
-2. 在 Java 侧的 [IRustToolbox.java](file:///D:/文档/开发文件夹/GitHub/Minrust/src/main/java/org/tab/minrust/IRustToolbox.java) 接口中添加对应方法声明
-3. 在 [RustToolboxImpl.java](file:///D:/文档/开发文件夹/GitHub/Minrust/src/main/java/org/tab/minrust/RustToolboxImpl.java) 中添加 native 方法声明和实现
+2. 在 Java 侧的 [IRustToolbox.java]接口中添加对应方法声明
+3. 在 [RustToolboxImpl.java]中添加 native 方法声明和实现
 
 ## 构建项目
 
