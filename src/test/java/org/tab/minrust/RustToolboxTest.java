@@ -1,4 +1,6 @@
-package org.tab.minrust;
+package org.tab.minrust.test;
+
+import org.tab.minrust.RustToolboxImpl;
 
 public class RustToolboxTest {
     public static void main(String[] args) {

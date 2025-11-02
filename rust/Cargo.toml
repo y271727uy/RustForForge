@@ -1,5 +1,5 @@
 [package]
-name = "minrust-native"
+name = "rustforforge-native"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,5 +7,5 @@ edition = "2021"
 jni = "0.21"
 
 [lib]
-name = "minrust_native"
+name = "rustforforge_native"
 crate-type = ["cdylib"]

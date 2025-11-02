@@ -128,3 +128,5 @@ pub extern "C" fn Java_org_tab_minrust_RustToolboxImpl_nativeMightPanic(
         let _ = env.throw_new("java/lang/RuntimeException", &message);
     }
 }
+
+//其实我是rust新手（（

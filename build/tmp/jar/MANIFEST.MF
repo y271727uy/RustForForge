@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Specification-Title: minrust
+Specification-Title: rustforforge
 Specification-Vendor: y271727uy
 Specification-Version: 1
 Implementation-Title: minrust
 Implementation-Version: 1.0.0
 Implementation-Vendor: y271727uy
-Implementation-Timestamp: 2025-10-04T22:14:19+0800
+Implementation-Timestamp: 2025-11-02T12:53:54+0800
 

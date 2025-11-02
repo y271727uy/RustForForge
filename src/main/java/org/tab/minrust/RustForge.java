@@ -15,15 +15,15 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Minrust.MODID)
-public class Minrust {
+@Mod(RustForge.MODID)
+public class RustForge {
 
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "minrust";
+    public static final String MODID = "rustforforge";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Minrust() {
+    public RustForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the commonSetup method for modloading

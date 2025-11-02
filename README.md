@@ -1,10 +1,10 @@
-# MinRust Mod
+# Rust for Forge Mod
 
 一个为Minecraft Forge模组提供高性能Rust接口的模组。
 
 ## ⚠️ 重要警告：实验性模组
 
-MinRust 是一个**实验性模组**，目前仍处于开发和测试阶段。使用此模组可能会遇到以下问题：
+Rust for Forge 是一个**实验性模组**，目前仍处于开发和测试阶段。使用此模组可能会遇到以下问题：
 
 1. 功能不稳定或存在未知bug
 2. 性能可能未达到预期
@@ -16,7 +16,7 @@ MinRust 是一个**实验性模组**，目前仍处于开发和测试阶段。�
 
 ## 项目概述
 
-MinRust 是一个为 Minecraft Forge 模组提供高性能 Rust 接口的库，通过 JNI 实现 Java 与 Rust 的无缝交互。
+Rust for Forge 是一个为 Minecraft Forge 模组提供高性能 Rust 接口的库，通过 JNI 实现 Java 与 Rust 的无缝交互。
 
 ## 技术栈版本信息
 
@@ -44,17 +44,17 @@ MinRust 是一个为 Minecraft Forge 模组提供高性能 Rust 接口的库，�
 
 只需简单两步即可使用：
 
-1. 将 [minrust-1.0.0.jar](file://D:\文档\开发文件夹\GitHub\Minrust\build\libs\minrust-1.0.0.jar) 文件放入 Minecraft 的 `mods` 文件夹
+1. 将 [rustforforge-1.0.0.jar](file://D:\文档\开发文件夹\GitHub\Minrust\build\libs\rustforforge-1.0.0.jar) 文件放入 Minecraft 的 `mods` 文件夹
 2. 获取对应平台的 Rust 动态库文件并放置在正确位置：
-   - Windows: `minrust_native.dll`
-   - Linux: `libminrust_native.so` 
-   - macOS: `libminrust_native.dylib`
+   - Windows: `rustforforge_native.dll`
+   - Linux: `librustforforge_native.so` 
+   - macOS: `librustforforge_native.dylib`
 
 **注意**：由于这是实验性模组，建议在测试环境中使用，避免在重要存档中使用。
 
 ### 2. 模组开发者
 
-如果您是模组开发者，想要在自己的模组中使用 MinRust 提供的高性能功能：
+如果您是模组开发者，想要在自己的模组中使用 Rust for Forge 提供的高性能功能：
 
 #### 环境要求
 - Java 17 开发环境
@@ -156,9 +156,9 @@ cargo build --release
 ```
 
 生成的动态库文件位置：
-- Windows: `target/release/minrust_native.dll`
-- Linux: `target/release/libminrust_native.so`
-- macOS: `target/release/libminrust_native.dylib`
+- Windows: `target/release/rustforforge_native.dll`
+- Linux: `target/release/librustforforge_native.so`
+- macOS: `target/release/librustforforge_native.dylib`
 
 ## 错误处理机制
 
@@ -187,4 +187,3 @@ try {
 5. **不修改原生环境**：Minecraft/Forge/Fabric Loader 保持原始状态
 6. **崩溃可追踪**：Rust 导致的崩溃在报错日志中明确标记
 7. **增强的稳定性**：Rust panic 不再导致 JVM 崩溃
-

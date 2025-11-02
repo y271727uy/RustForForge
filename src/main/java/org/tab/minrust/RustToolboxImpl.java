@@ -3,6 +3,11 @@ package org.tab.minrust;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 /**
  * Rust工具箱实现类
  * 通过JNI调用Rust动态库
@@ -18,13 +23,54 @@ public class RustToolboxImpl implements IRustToolbox {
     private RustToolboxImpl() {
         try {
             // 尝试加载Rust动态库
-            System.loadLibrary("minrust_native");
+            loadNativeLibrary();
             rustLibraryLoaded = true;
             LOGGER.info("Successfully loaded Rust native library");
         } catch (UnsatisfiedLinkError e) {
             LOGGER.error("Failed to load Rust native library: " + e.getMessage());
             rustLibraryLoaded = false;
+        } catch (Exception e) {
+            LOGGER.error("Failed to load Rust native library: " + e.getMessage(), e);
+            rustLibraryLoaded = false;
         }
+    }
+    
+    private void loadNativeLibrary() throws Exception {
+        // 获取操作系统和架构相关的库名称
+        String osName = System.getProperty("os.name").toLowerCase();
+        String libName;
+        String resourcePath;
+        
+        if (osName.contains("win")) {
+            libName = "rustforforge_native.dll";
+            resourcePath = "/natives/windows64/" + libName;
+        } else if (osName.contains("mac")) {
+            libName = "librustforforge_native.dylib";
+            resourcePath = "/natives/macosx64/" + libName;
+        } else if (osName.contains("linux")) {
+            libName = "librustforforge_native.so";
+            resourcePath = "/natives/linux64/" + libName;
+        } else {
+            throw new UnsupportedOperationException("Unsupported operating system: " + osName);
+        }
+        
+        // 从JAR中提取库文件到临时目录
+        InputStream libStream = RustToolboxImpl.class.getResourceAsStream(resourcePath);
+        if (libStream == null) {
+            throw new RuntimeException("Native library not found in resources: " + resourcePath);
+        }
+        
+        // 创建临时文件
+        File tempLibFile = File.createTempFile(libName.replace(".", "_"), "." + libName.substring(libName.lastIndexOf('.') + 1));
+        tempLibFile.deleteOnExit();
+        
+        // 将库文件复制到临时文件
+        Files.copy(libStream, tempLibFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        libStream.close();
+        
+        // 加载库
+        System.load(tempLibFile.getAbsolutePath());
+        LOGGER.info("Successfully extracted and loaded native library from: " + resourcePath);
     }
     
     public static RustToolboxImpl getInstance() {

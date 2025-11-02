@@ -3,20 +3,20 @@ loaderVersion = "[47,)"
 license = "GNU GPL 3.0"
 
 [[mods]]
-modId = "minrust"
+modId = "rustforforge"
 version = "2.0.0"
-displayName = "Minrust"
+displayName = "Rust for Forge"
 authors = "y271727uy"
 description = '''Take the rust for Minecraft'''
 
-[[dependencies."minrust"]]
+[[dependencies."rustforforge"]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies."minrust"]]
+[[dependencies."rustforforge"]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1]"
