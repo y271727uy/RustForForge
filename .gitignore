@@ -1,0 +1,29 @@
+# Build files
+.gradle/
+build/
+/target/
+libs/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Rust target directory
+rust/target/
+
+# Native libraries (they are bundled in the jar)
+**/*.dll
+**/*.so
+**/*.dylib

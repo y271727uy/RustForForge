@@ -1,2 +1,17 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# 指定主要语言
+*.rs linguist-language=Rust
+*.java linguist-language=Java
+
+# 排除不应该被统计的文件和目录
+*.json linguist-vendored=true
+*.dll linguist-vendored=true
+*.so linguist-vendored=true
+*.dylib linguist-vendored=true
+/target/** linguist-vendored=true
+/libs/** linguist-vendored=true
+/.idea/** linguist-vendored=true
+/build/** linguist-vendored=true
+
+# 明确指定某些文件的语言
+gradlew linguist-language=Shell
+gradlew.bat linguist-language=Batchfile
