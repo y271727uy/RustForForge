@@ -27,3 +27,14 @@ rust/target/
 **/*.dll
 **/*.so
 **/*.dylib
+
+# Gradle files
+.gradle/
+build/
+!gradle/
+!gradlew
+!gradlew.bat
+
+# IDE specific files
+*.swp
+*.swo

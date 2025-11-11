@@ -7,11 +7,22 @@
 *.dll linguist-vendored=true
 *.so linguist-vendored=true
 *.dylib linguist-vendored=true
+*.lock linguist-vendored=true
 /target/** linguist-vendored=true
 /libs/** linguist-vendored=true
 /.idea/** linguist-vendored=true
 /build/** linguist-vendored=true
+/run/** linguist-vendored=true
+/run-data/** linguist-vendored=true
+/.gradle/** linguist-vendored=true
+/gradle/** linguist-vendored=true
 
 # 明确指定某些文件的语言
 gradlew linguist-language=Shell
 gradlew.bat linguist-language=Batchfile
+build.gradle linguist-language=Gradle
+settings.gradle linguist-language=Gradle
+gradle.properties linguist-language=Properties
+
+# 排除特定文件类型
+*.md linguist-documentation=true
