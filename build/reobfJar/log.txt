@@ -142,6 +142,7 @@ Writing Output: D:\????\??????????\GitHub\Minrust\build\reobfJar\output.jar
   META-INF/mods.toml
   natives/
   natives/windows64/
+  natives/windows64/minrust_native.dll
   natives/windows64/rustforforge_native.dll
   org/
   org/tab/

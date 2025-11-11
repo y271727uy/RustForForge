@@ -193,3 +193,50 @@ tasks.named('jar', Jar).configure {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
+
+// 添加Rust编译任务
+task compileRust(type: Exec) {
+    workingDir 'rust'
+    
+    // 根据操作系统设置不同的编译命令
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        commandLine 'cargo', 'build', '--release'
+    } else {
+        commandLine 'cargo', 'build', '--release'
+    }
+    
+    // 设置环境变量以确保正确的编译
+    environment 'RUSTFLAGS', '-C target-feature=+crt-static'
+}
+
+// 添加任务将编译好的Rust库复制到resources目录
+task copyRustLibraries(type: Copy, dependsOn: compileRust) {
+    // 等待Rust编译完成后再执行复制
+    
+    // 根据不同操作系统复制相应的库文件
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        from('rust/target/release') {
+            include '*.dll'
+        }
+    } else if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        from('rust/target/release') {
+            include '*.dylib'
+        }
+    } else {
+        from('rust/target/release') {
+            include '*.so'
+        }
+    }
+    
+    // 将库文件复制到resources的natives目录下按平台分类
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        into 'src/main/resources/natives/windows64'
+    } else if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        into 'src/main/resources/natives/macosx64'
+    } else {
+        into 'src/main/resources/natives/linux64'
+    }
+}
+
+// 确保在处理资源之前已经复制了Rust库
+processResources.dependsOn copyRustLibraries
